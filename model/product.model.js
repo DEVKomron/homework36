@@ -1,13 +1,13 @@
 import { pool } from "../databases/index.js";
 
-export const getallProductModel = async (page, limit) => {
+export const getallProductModel = async (page=0, limit=20) => {
   try {
     const result = await pool.query(
       `SELECT *
        FROM product 
        LIMIT $1 OFFSET $2
 `,
-      [page, limit]
+      [ limit, page]
     );
 
     return result.rows;
